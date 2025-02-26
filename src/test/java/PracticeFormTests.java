@@ -37,6 +37,16 @@ public class PracticeFormTests {
         $("#react-select-4-input").setValue("Delhi").pressEnter();
         $("#submit").click();
 
-
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        $(".table").$(byText("Student Name")).sibling(0).shouldHave(text("Aleksey Maxwell"));
+        $(".table").$(byText("Student Email")).sibling(0).shouldHave(text("pra@pra.ru"));
+        $(".table").$(byText("Gender")).sibling(0).shouldHave(text("Male"));
+        $(".table").$(byText("Mobile")).sibling(0).shouldHave(text("7950505050"));
+        $(".table").$(byText("Date of Birth")).sibling(0).shouldHave(text("26 September,1994"));
+        $(".table").$(byText("Subjects")).sibling(0).shouldHave(text("Maths"));
+        $(".table").$(byText("Hobbies")).sibling(0).shouldHave(text("Sports"));
+        $(".table").$(byText("Picture")).sibling(0).shouldHave(text("images_3.jpg"));
+        $(".table").$(byText("Address")).sibling(0).shouldHave(text("MORSE"));
+        $(".table").$(byText("State and City")).sibling(0).shouldHave(text("NCR Delhi"));
     }
 }
