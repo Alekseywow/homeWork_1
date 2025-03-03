@@ -20,7 +20,7 @@ public class PracticeFormTests {
     void successFullFormTest() {
 
         open("https://demoqa.com/automation-practice-form");
-        $("practice-form-wrapper").shouldHave(text("Student Registration Form"));
+        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
         executeJavaScript("$('footer').remove()");
         executeJavaScript("$('#fixedban').remove()");
         $("#firstName").setValue("Aleksey");
