@@ -13,6 +13,7 @@ public class RegistrationWithPajeObjectTests extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
 
 
+
     @Test
     void successFullFormTest() {
         registrationPage.openPage()

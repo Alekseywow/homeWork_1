@@ -22,8 +22,10 @@ public class RegistrationPage {
         hobbiesWrapper = $("#hobbiesWrapper"),
         uploadPicture = $("#uploadPicture"),
         currentAddress = $("#currentAddress"),
-        currentInput = $("#react-select-3-input"),
-        adressInput = $("#react-select-4-input"),
+        stateField = $("#state"),
+        stateDropdown = $("#stateCity-wrapper"),
+        adressField = $("#city"),
+        adressDropdown = $("#stateCity-wrapper"),
         submitButton = $("#submit");
 
 
@@ -106,11 +108,13 @@ public class RegistrationPage {
         return this;
     }
     public RegistrationPage setState (String value) {
-        currentInput.setValue(value).pressEnter();
+        stateField.click();
+        stateDropdown.$(byText(value)).click();
         return this;
     }
     public RegistrationPage setCity (String value) {
-        adressInput.setValue(value).pressEnter();
+        adressField.click();
+        adressDropdown.$(byText(value)).click();
         return this;
     }
     public RegistrationPage submit() {
