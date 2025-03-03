@@ -1,7 +1,9 @@
 package pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendareComponent;
+import pages.components.TableComponent;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -17,31 +19,34 @@ public class RegistrationPage {
         userNumberInput = $("#userNumber"),
         calendarInput = $("#dateOfBirthInput"),
         subjectsInput = $("#subjectsInput"),
-            hobbiesWrapper = $("#hobbiesWrapper"),
-            uploadPicture = $("#uploadPicture"),
-            currentAddress = $("#currentAddress"),
+        hobbiesWrapper = $("#hobbiesWrapper"),
+        uploadPicture = $("#uploadPicture"),
+        currentAddress = $("#currentAddress"),
         currentInput = $("#react-select-3-input"),
         adressInput = $("#react-select-4-input"),
-            submitButton = $("#submit"),
-        modalDialog = $("#example-modal-sizes-title-lg"),
-        tableResult = $(".table");
-
-
+        submitButton = $("#submit");
 
 
 
 
     CalendareComponent calendareComponent = new CalendareComponent();
+    TableComponent tableComponent = new TableComponent();
 
 
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+
+        return this;
+    }
+
+    public RegistrationPage removeBanner() {
         executeJavaScript("$('footer').remove()");
         executeJavaScript("$('#fixedban').remove()");
 
         return this;
+
     }
 
     public RegistrationPage setFirstName(String value) {
@@ -56,7 +61,7 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setUserName (String value) {
+    public RegistrationPage setUserEmail (String value) {
         userEmailInput.setValue(value);
 
         return this;
@@ -81,43 +86,44 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setSubjects(String value) {
-        subjectsInput.setValue(value).pressEnter();
-        return this;
-    }
-
     public RegistrationPage setHobbies(String value) {
         hobbiesWrapper.$(byText(value)).click();
         return this;
     }
 
+    public RegistrationPage setSubjects(String value) {
+        subjectsInput.setValue(value).pressEnter();
+        return this;
+    }
+
+
     public RegistrationPage setPicture (String value) {
         uploadPicture.uploadFromClasspath(value);
         return this;
     }
-    public RegistrationPage setCurrentAddress (String value) {
+    public RegistrationPage setAddress (String value) {
         currentAddress.setValue(value);
         return this;
     }
-    public RegistrationPage setCurrent (String value) {
+    public RegistrationPage setState (String value) {
         currentInput.setValue(value).pressEnter();
         return this;
     }
-    public RegistrationPage setAddress (String value) {
+    public RegistrationPage setCity (String value) {
         adressInput.setValue(value).pressEnter();
         return this;
     }
-    public RegistrationPage submitForm() {
+    public RegistrationPage submit() {
         submitButton.click();
         return this;
     }
 
-    public RegistrationPage checkResultModal(String value) {
-        modalDialog.shouldHave(text(value));
+    public RegistrationPage checkResult(String key, String value) {
+        tableComponent.checkTableResult(key, value);
         return this;
     }
-    public RegistrationPage checkResult(String key, String value) {
-        tableResult.$(byText(key)).sibling(0).shouldHave(text(value));
+    public RegistrationPage verifyUserNumberFieldIsRed() {
+        userNumberInput.shouldHave(Condition.cssValue("border-color", "rgb(220, 53, 69)"));
         return this;
     }
 
